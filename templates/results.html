@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'main.css')}}" type="text/css">
+    <title>Results</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">SoH Prediction</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xm-12">
+                    <div class="ml-auto mr-auto">
+                        <div class="site-header-logo">
+                            <h1 class="text-center">
+                                Results and analysis
+                            </h1>
+                        </div>
+                    
+                        <div class="row p-4">
+                            <div class="card m-auto" style="width: 90%;" data-aos="fade-left">
+                                <div class="card-body">
+                                    <div id="chart1"></div>
+                                    <p class="card-text">The battery capacity decreases as the discharge cycle of the battery increases</p>
+                                </div>
+                                </div>
+                            </div>
+                    
+                            <div class="card mb-4 m-auto" style="width: 90%;" data-aos="fade-left">
+                                <div class="card-body">
+                                    <div id="chart2"></div>
+                                    <p class="card-text">The battery output current does not provide any information about the battery capacity</p>
+                                </div>
+                            </div>
+                    
+                            <div class="card mb-4 m-auto" style="width: 90%;" data-aos="slide-up">
+                                <div class="card-body">
+                                    <div id="chart3"></div>
+                                    <p class="card-text">The battery capacity decreases as the terminal voltage of the battery increases</p>
+                                </div>
+                                </div>
+                                <div class="card mb-4 m-auto" style="width: 90%;" data-aos="slide-up">
+                                    <div class="card-body">
+                                        <div id="chart4"></div>
+                                        <p class="card-text"></p>The deep learning algorithm can dynamically predict the SoH given the current state of the battery discharge cycle</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- plotly CDN -->
+                    
+                        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+                        <script type="text/javascript">
+                            var graphs1 = {{ graph1JSON | safe}};
+                            Plotly.plot("chart1", graphs1,{});
+                    
+                            var graphs2 = {{ graph2JSON | safe}};
+                            Plotly.plot("chart2", graphs2,{});
+                    
+                            var graphs3 = {{ graph3JSON | safe}};
+                            Plotly.plot("chart3", graphs3,{});
+
+                            var graphs4 = {{ graph4JSON | safe}};
+                            Plotly.plot("chart4", graphs4,{});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
+</body>
+</html>
